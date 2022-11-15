@@ -4,6 +4,7 @@ import App from './App'
 import './index.css'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Register from './components/Register'
+import Login from './components/Login'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -11,6 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path='/' element={<App/>} />
         <Route path='/Register' element={<Register/>}/>
+        <Route path='/Login' element={<Login/>}/>
       </Routes>
     </Router>
   </React.StrictMode>
