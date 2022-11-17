@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 })
 
 // Registration
-app.post('/register', async (req, res) => {
+app.post('/Register', async (req, res) => {
     try {
         // Get body or Data
         const firstname = req.body.firstname;
@@ -51,6 +51,40 @@ app.post('/register', async (req, res) => {
         res.status(400).send(error)
     }
 })
+
+// Login User
+app.post('/Login', async (req, res) => {
+    try{
+        const email = req.body.email;
+        const password = req.body.password;
+
+        // Find User if Exist
+        const user = await Users.findOne({email : email});
+        if(user){
+            // Verify Password
+            const isMatch = await bcryptjs.compare(password, user.password);
+
+            if(isMatch){
+                // Generate Token that is defined in User Schema
+                const token = await user.generateToken();
+                res.cookie("jwt", token, {
+                    // Expires Token in 24 Hours
+                    expires : new Date(Date.now() + 86400000),
+                    httpOnly : true
+                })
+                res.status(200).send("LoggedIn")
+            }else{
+                res.status(400).send("Invalid Credentials");
+            }
+        }else{
+            res.status(400).send("Invalid Credentials"); 
+        }
+
+    } catch (error) {
+        res.status(400).send(error);
+    }
+})
+
 
 // Run Server
 app.listen(port, ()=>{

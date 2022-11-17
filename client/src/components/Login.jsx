@@ -17,10 +17,12 @@ const Login = () => {
                     <h2 className="text-3xl mb-4">Sign in</h2>
                     <form action="#">
                         <div className="mt-5">
-                            <input type="text" placeholder="Email" className="rounded-2xl border ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2 w-full"/>
+                            <input type="text" placeholder="Email" className="rounded-2xl border ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2 w-full"
+                            id="mail"/>
                         </div>
                         <div className="mt-5">
-                            <input type="password" placeholder="Password" className="rounded-2xl border-none ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2 w-full"/>
+                            <input type="password" placeholder="Password" className="rounded-2xl border-none ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2 w-full"
+                            id="pwd"/>
                         </div>
                         <div className="mt-5">
                         <button className="rounded-2xl w-full bg-purple-500 py-3 text-center text-white">Login</button>

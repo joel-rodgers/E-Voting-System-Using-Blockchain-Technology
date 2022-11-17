@@ -20,20 +20,21 @@ const Register = () => {
                     </p>
                     <form action="#">
                         <div className="grid grid-cols-2 gap-5">
-                            <input type="text" placeholder="Firstname" className="rounded-2xl border ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2"/>
-                            <input type="text" placeholder="Surname" className="rounded-2xl border ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2"/>
+                            <input type="text" placeholder="Firstname" className="rounded-2xl border ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2"
+                            id="fname"/>
+                            <input type="text" placeholder="Surname" className="rounded-2xl border ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2"
+                            id="sname"/>
                         </div>
                         <div className="mt-5">
-                            <input type="text" placeholder="Email" className="rounded-2xl border ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2 w-full"/>
+                            <input type="text" placeholder="Email" className="rounded-2xl border ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2 w-full"
+                            id="mail"/>
                         </div>
                         <div className="mt-5">
-                            <input type="password" placeholder="Password" className="rounded-2xl border ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2 w-full"/>
+                            <input type="password" placeholder="Password" className="rounded-2xl border ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2 w-full"
+                            id="pwd"/>
                         </div>
                         <div className="mt-5">
-                            <input type="password" placeholder="Confirm Password" className="rounded-2xl border ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2 w-full"/>
-                        </div>
-                        <div className="mt-5">
-                            <input type="checkbox" className="border border-gray-400"/>
+                            <input type="checkbox" className="border border-gray-400" id="check"/>
                             <span>
                             I accept the <a href="#" className="text-purple-500 font-semibold">Terms of Use</a> &  <a href="#" className="text-purple-500 font-semibold">Privacy Policy</a>
                             </span>
