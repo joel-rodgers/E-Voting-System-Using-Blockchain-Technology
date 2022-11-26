@@ -1,7 +1,59 @@
 import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const Register = () => {
+
+    const navigate = useNavigate();
+
+    const [user, setUser] = useState({
+        firstname: "",
+        surname: "",
+        email: "",
+        password: ""
+    });
+
+    // Handle Inputs
+    const handleInput = (event) => {
+        let  name = event.target.name;
+        let value = event.target.value;
+
+        setUser({...user, [name]:value});
+    }
+
+    // Handle Submit
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        // Object Destructuring
+        // Store Object Data into Variables
+        const {firstname, surname, email, password} = user;
+        try {
+            // It is Submmitted on port 3000 by default
+            // Which is the Front End but we need to
+            // Submit it on Backend which is on port 3001. So we need Proxy.
+            const res = await fetch('/Register', {
+                method : "POST",
+                headers : {
+                    "Content-Type" : "application/json"
+                },
+                body : JSON.stringify({
+                    firstname, surname, email, password
+                })
+            })
+
+            if(res.status === 400 || !res){
+                window.alert("Already Used Details")
+            }else{
+                // You need to Restart the Server for Proxy Works
+                window.alert("Registered Successfully");
+                navigate('/Login')
+            }
+        } catch (error){
+            console.log(error);
+        }
+    }
+
   return (
     <div className="min-h-screen py-40 gradient-bg-register">
         <div className="container mx-auto">
@@ -18,20 +70,32 @@ const Register = () => {
                     <p className="mb-4">
                         Create your account. It's free and only takes a minute.
                     </p>
-                    <form action="#">
+                    <form onSubmit={handleSubmit} method="POST" >
                         <div className="grid grid-cols-2 gap-5">
                             <input type="text" placeholder="Firstname" className="rounded-2xl border ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2"
-                            id="fname"/>
+                            id="fname"
+                            name="firstname"
+                            value={user.firstname}
+                            onChange={handleInput}/>
                             <input type="text" placeholder="Surname" className="rounded-2xl border ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2"
-                            id="sname"/>
+                            id="sname"
+                            name="surname"
+                            value={user.surname}
+                            onChange={handleInput}/>
                         </div>
                         <div className="mt-5">
                             <input type="text" placeholder="Email" className="rounded-2xl border ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2 w-full"
-                            id="mail"/>
+                            id="mail"
+                            name="email"
+                            value={user.email}
+                            onChange={handleInput}/>
                         </div>
                         <div className="mt-5">
                             <input type="password" placeholder="Password" className="rounded-2xl border ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2 w-full"
-                            id="pwd"/>
+                            id="pwd"
+                            name="password"
+                            value={user.password}
+                            onChange={handleInput}/>
                         </div>
                         <div className="mt-5">
                             <input type="checkbox" className="border border-gray-400" id="check"/>
@@ -41,7 +105,7 @@ const Register = () => {
 
                         </div>
                         <div className="mt-5">
-                        <button className="rounded-2xl w-full bg-purple-500 py-3 text-center text-white">Register Now</button>
+                        <button type="submit" className="rounded-2xl w-full bg-purple-500 py-3 text-center text-white">Register Now</button>
                         </div>
                     </form>
                 </div>

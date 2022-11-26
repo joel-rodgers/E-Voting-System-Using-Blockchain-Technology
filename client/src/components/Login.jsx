@@ -1,7 +1,49 @@
-import React from 'react'
 import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 
 const Login = () => {
+
+    const [user, setUser] = useState({
+        email : '',
+        password : ''
+    });
+
+    // Handle Input
+    const handleChange = (event) => {
+        let name = event.target.name
+        let value = event.target.value
+
+        setUser({...user, [name] : value})
+    }
+
+    // Handle Login
+    const handleSubmit = async (event) =>{
+        event.preventDefault();
+        const {email, password} = user;
+        try{
+            const res = await fetch('/Login', {
+                method : 'POST',
+                headers: {
+                    "Content-type" : "application/json"
+                },
+                body: JSON.stringify({
+                    email, password
+                })
+            });
+
+            if(res.status === 400 || !res){
+                window.alert("Invalid Credentials")
+            }else{
+                window.alert("Login Successfull");
+                window.location.reload();
+                // Token is generated when we log in
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
   return (
     <div className="min-h-screen py-40 gradient-bg-register">
         <div className="container mx-auto">
@@ -15,17 +57,23 @@ const Login = () => {
                 </div>
                 <div className="w-full lg:w-1/2 py-16 px-12">
                     <h2 className="text-3xl mb-4">Sign in</h2>
-                    <form action="#">
+                    <form onSubmit={handleSubmit}>
                         <div className="mt-5">
                             <input type="text" placeholder="Email" className="rounded-2xl border ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2 w-full"
-                            id="mail"/>
+                            id="mail"
+                            name="email"
+                            value={user.email}
+                            onChange={handleChange}/>
                         </div>
                         <div className="mt-5">
                             <input type="password" placeholder="Password" className="rounded-2xl border-none ring-2 ring-gray-200 focus:ring-gray-500 focus:ring-2 py-1 px-2 w-full"
-                            id="pwd"/>
+                            id="pwd"
+                            name="password"
+                            value={user.password}
+                            onChange={handleChange}/>
                         </div>
                         <div className="mt-5">
-                        <button className="rounded-2xl w-full bg-purple-500 py-3 text-center text-white">Login</button>
+                        <button type="submit" className="rounded-2xl w-full bg-purple-500 py-3 text-center text-white">Login</button>
                         </div>
                     </form>
                 </div>
