@@ -32,7 +32,7 @@ const Register = () => {
             // It is Submmitted on port 3000 by default
             // Which is the Front End but we need to
             // Submit it on Backend which is on port 3001. So we need Proxy.
-            const res = await fetch('/Register', {
+            const res = await fetch('http://localhost:3001/Register', {
                 method : "POST",
                 headers : {
                     "Content-Type" : "application/json"

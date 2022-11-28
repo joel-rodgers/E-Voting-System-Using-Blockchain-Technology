@@ -4,6 +4,7 @@ const express = require('express');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const app = express();
 
@@ -14,11 +15,16 @@ const port = process.env.PORT;
 
 // Require Model
 const Users = require('./models/userSchema');
+const { application } = require('express');
 
 // These Method is Used to Get Data and Cookies from FrontEnd
 app.use(express.json());
 app.use(express.urlencoded({extended : false}));
 app.use(cookieParser());
+
+app.use(cors({
+    origin:'http://127.0.0.1:3000',
+}))
 
 app.get('/', (req, res) => {
     res.send("Hello World");
