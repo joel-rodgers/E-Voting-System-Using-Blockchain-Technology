@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-const Login = () => {
+const Admin = () => {
 
     const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const Login = () => {
         event.preventDefault();
         const {email, password} = user;
         try{
-            const res = await fetch('http://localhost:3001/Login', {
+            const res = await fetch('http://localhost:3001/Admin', {
                 method : 'POST',
                 headers: {
                     "Content-type" : "application/json"
@@ -87,4 +87,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Admin

@@ -5,3 +5,13 @@ export { default as Welcome} from './Welcome';
 export { default as Services} from './Services';
 export { default as Register} from './Register';
 export { default as Login} from './Login';
+export { default as NavbarUser} from './NavbarUser';
+export { default as SidebarUser} from './SidebarUser';
+export { default as voterRegistration} from './voterRegistration';
+export { default as votingArea} from './votingArea';
+export { default as results} from './Results';
+export { default as logout} from './logout';
+export { default as dashboard} from './dashboard';
+export { default as CustomButton} from './CustomButton';
+export { default as profile} from './profile';
+
