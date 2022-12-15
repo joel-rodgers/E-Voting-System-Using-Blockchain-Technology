@@ -38,8 +38,8 @@ const Admin = () => {
             if(res.status === 400 || !res){
                 window.alert("Invalid Credentials")
             }else{
-                window.alert("Login Successfull");
-                navigate ('/UserHome')
+                window.alert("Login Successful");
+                navigate ('/AdminHome')
                 // Token is generated when we log in
             }
 

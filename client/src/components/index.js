@@ -13,5 +13,14 @@ export { default as results} from './Results';
 export { default as logout} from './logout';
 export { default as dashboard} from './dashboard';
 export { default as CustomButton} from './CustomButton';
+export { default as AdminCustomButton} from './AdminCustomButton';
 export { default as profile} from './profile';
+export { default as NavbarAdmin} from './NavbarAdmin';
+export { default as SidebarAdmin} from './SidebarAdmin';
+export { default as adDashboard} from './adDashboard';
+export { default as addCandidate} from './addCandidate';
+export { default as registerVoters} from './registerVoters';
+export { default as changeState} from './changeState';
+export { default as electionResults} from './electionResults';
+
 
