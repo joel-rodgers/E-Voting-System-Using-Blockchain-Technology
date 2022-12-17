@@ -8,5 +8,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@thirdweb-dev/contracts": "^3.2.9",
+    "dotenv": "^16.0.3"
+  }
 }
