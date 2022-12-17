@@ -20,6 +20,10 @@ const addCandidate = () => {
   }
 
   const handleSubmit = () => {
+    e.preventDefault();
+
+    
+    console.log(form);
 
   }
 
