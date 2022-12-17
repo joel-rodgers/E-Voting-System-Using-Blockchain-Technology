@@ -7,7 +7,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import UserHome from './container/UserHome';
 import Admin from './components/Admin';
-import AdminHome from './container/AdminHome';
+import AdminHome from './container2/AdminHome';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -17,8 +17,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/Register' element={<Register/>}/>
         <Route path='/Login' element={<Login/>}/>
         <Route path='/Admin' element={<Admin/>}/>
-        <Route path='/*' element={<UserHome/>}/>
         <Route path='/*' element={<AdminHome/>}/>
+        <Route path='/UserHome' element={<UserHome/>}/>
+        
         
       </Routes>
     </Router>
