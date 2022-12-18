@@ -26,6 +26,6 @@ export { default as FormField} from './FormField';
 export { default as registerVoters} from './registerVoters';
 export { default as changeState} from './changeState';
 export { default as electionResults} from './electionResults';
-export { default as AdminCustomButton} from './AdminCustomButton';
+
 
 

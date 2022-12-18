@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { ethers } from 'ethers';
+import './init';
 
+import { useStateContext } from '../context';
 import { CustomButton, FormField} from '.';
+import { checkIfImage } from '../utils';
 
 const addCandidate = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const {addCandidate} = useStateContext();
   const [form, setForm] = useState({
       cname: '',
       cbio: '',
@@ -19,11 +23,23 @@ const addCandidate = () => {
     setForm({ ...form, [fieldName]: e.target.value })
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    checkIfImage(form.cimage, async (exists) => {
+      if(exists){
+        setIsLoading(true)
+        await addCandidate({ ...form});
+        setIsLoading(false)
+        navigate('/adDashboard')
+      } else {
+        alert('Provide valid image URL')
+        setForm({ ...form, cimage: ''});
+      }
+    })
+
     
-    console.log(form);
+    
 
   }
 

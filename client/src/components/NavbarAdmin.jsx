@@ -1,7 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react'; 
 
-import {AdminCustomButton} from '.';
+import { useStateContext } from '../context';
+import {CustomButton} from './';
 import logo from "../../images/logo.png";
 import police from "../../images/police.png";
 import search from "../../images/search.svg";
@@ -14,8 +15,9 @@ const NavbarAdmin = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState('adDashboard');
   const [toggleDrawer, setToggleDrawer] = useState(false);
+  const { connect, address} = useStateContext();
 
-  const address = '0xabc';
+
 
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
@@ -28,13 +30,13 @@ const NavbarAdmin = () => {
 
       </div>
       <div className="sm:flex hidden flex-row justify-end gap-4">
-      <AdminCustomButton 
+      <CustomButton 
           btnType="button"
-          title={address ? 'Vote' : 'Connect'}
+          title={address ? 'Add a Candidate' : 'Connect'}
           styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
           handleClick={() => {
             if(address) navigate('registerVoters')
-            else 'connect()'
+            else connect()
           }}
         />
 
@@ -84,13 +86,13 @@ const NavbarAdmin = () => {
             </ul>
 
             <div className="flex mx-4">
-            <AdminCustomButton 
+            <CustomButton 
               btnType="button"
               title={address ? 'Vote' : 'Connect'}
               styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
               handleClick={() => {
                 if(address) navigate('registerVoters')
-                else 'connect()'
+                else connect();
               }}
             />
 

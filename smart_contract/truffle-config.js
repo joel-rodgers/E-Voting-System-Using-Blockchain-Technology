@@ -1,16 +1,19 @@
 module.exports = {
-  networks: {},
-    
-  mocha: {
-    // timeout: 100000
+  solidity: {
+    version: '0.8.17',
+    defaultNetwork: 'goerli',
+    networks: {
+      truffle: {},
+      goerli: {
+        url: 'https://rpc.ankr.com/eth_goerli',
+        accounts: [`0x${process.env.PRIVATE_KEY}`]
+      }
+    },
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200,
+      },
+    },
   },
-
-  // Configure your compilers
-  compilers: {
-    solc: {
-      version: "0.8.17"  
-    }
-  }
-
-  
 };

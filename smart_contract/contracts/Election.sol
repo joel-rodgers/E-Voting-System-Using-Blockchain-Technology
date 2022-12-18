@@ -56,7 +56,7 @@ contract Election{
     
 	}
 
-    function voterRegisteration(address user) public onlyAdmin validState(PHASE.reg){
+    function voterRegistration(address user) public onlyAdmin validState(PHASE.reg){
 		voters[user].isRegistered=true;
 	}
 
