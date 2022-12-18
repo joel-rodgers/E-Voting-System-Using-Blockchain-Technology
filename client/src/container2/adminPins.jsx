@@ -25,7 +25,6 @@ export const nav = [
     name: 'Change State',
     imgUrl2: changeState,
     link2: '/changeState',
-    disabled: true,
   },
   {
     name: 'Election Results',

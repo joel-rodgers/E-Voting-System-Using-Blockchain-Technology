@@ -9,11 +9,28 @@ const StateContext = createContext();
 export const StateContextProvider = ({ children }) => {
     const {contract} = useContract
     ('0xa2FCA21284AADe347ac9687b1671a6Aa6C4cf413');
+
+    //ADD CANDIDATE CONTRACT
     const { mutateAsync: addCandidate} = useContractWrite(contract, 'addCandidate');
+
+    //REGISTER VOTER CONTRACT
+    
+    //CHANGE STATE CONTRACT
+
+    //VOTE CONTRACT
+
+    //READ CANDIDATES CONTRACT
+
+    //READ CANDIDATES COUNT CONTRACT
+
+    //READ STATE CONTRACT
+
+    //READ REGISTERED VOTERS CONTRACT
 
     const address = useAddress();
     const connect = useMetamask();
 
+    //ADD CANDIDATE FUNCTION CALL
     const publishCandidate = async (form) => {
     try {
         const data = await addCandidate([
@@ -29,6 +46,22 @@ export const StateContextProvider = ({ children }) => {
       console.log("contract call failure", error)
     }
   }
+
+    //REGISTER VOTER FUNCTION CALL
+
+    //CHANGE STATE FUNCTION CALL
+
+    //VOTE FUNCTION CALL
+
+    //READ CANDIDATES FUNCTION CALL
+
+    //READ CANDIDATES COUNT FUNCTION CALL
+
+    //READ STATE FUNCTION CALL
+
+    //READ REGISTERED VOTERS FUNCTION CALL
+
+
 
   return (
     <StateContext.Provider

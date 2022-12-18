@@ -20,13 +20,11 @@ export const navlinks = [
     name: 'voting Area',
     imgUrl: votingArea,
     link: '/votingArea',
-    disabled: true,
   },
   {
     name: 'results',
     imgUrl: results,
     link: '/results',
-    disabled: true,
   },
   {
     name: 'profile',
