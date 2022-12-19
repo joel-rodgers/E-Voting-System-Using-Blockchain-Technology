@@ -7,6 +7,7 @@ import Profile from '../components/profile';
 import VoterRegistration from '../components/voterRegistration';
 import VotingArea from '../components/votingArea';
 import Results from '../components/results';
+import OTP from '../components/otp';
 
 
 import logo from "../../images/logo.png";
@@ -28,6 +29,7 @@ const UserHome = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/voterRegistration" element={<VoterRegistration />} />
         <Route path="/votingArea" element={<VotingArea />} />
+        <Route path="/otp" element={<OTP />} />
         </Routes>
       </div>
     </div>

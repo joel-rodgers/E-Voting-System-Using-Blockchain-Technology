@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react'; 
+import { useStateContext } from '../context';
 
 import {CustomButton} from './';
 import logo from "../../images/logo.png";
@@ -14,8 +15,9 @@ const NavbarUser = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState('dashboard');
   const [toggleDrawer, setToggleDrawer] = useState(false);
+  const { connect, address} = useStateContext();
 
-  const address = '0xabc';
+  //const address = '0xabc';
 
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
@@ -34,7 +36,7 @@ const NavbarUser = () => {
           styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
           handleClick={() => {
             if(address) navigate('voterRegistration')
-            else 'connect()'
+            else connect()
           }}
         />
 
@@ -90,7 +92,7 @@ const NavbarUser = () => {
               styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
               handleClick={() => {
                 if(address) navigate('voterRegistration')
-                else 'connect()'
+                else connect()
               }}
             />
 

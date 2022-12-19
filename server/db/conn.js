@@ -7,6 +7,10 @@ mongoose.connect(db, {
     useUnifiedTopology : true,
 }).then(() => {
     console.log("Connection Successfull");
+
+
+  
 }).catch((e)=> {
     console.log(e);
 })
+

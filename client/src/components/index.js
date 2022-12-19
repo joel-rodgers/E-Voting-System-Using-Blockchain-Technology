@@ -16,6 +16,7 @@ export { default as results} from './results';
 export { default as dashboard} from './dashboard';
 export { default as CustomButton} from './CustomButton';
 export { default as profile} from './profile';
+export { default as otp} from './otp';
 
 // Admin Side
 export { default as NavbarAdmin} from './NavbarAdmin';
