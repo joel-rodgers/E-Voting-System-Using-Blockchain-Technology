@@ -26,6 +26,7 @@ const handleSubmit = async (e) =>{
         try{
             const res = await fetch('http://localhost:3001/voterRegistration', {
                 method : 'POST',
+                mode: 'cors',
                 headers: {
                     "Content-type" : "application/json"
                 },
@@ -34,12 +35,12 @@ const handleSubmit = async (e) =>{
                 })
             });
 
-            if(!res){
+            if(res.status === 400||!res){
                 window.alert("Invalid Entry")
             }else{
                 window.alert("Checking....");
                 navigate ('/otp')
-                // Token is generated when we log in
+                
             }
 
         } catch (error) {
@@ -59,7 +60,7 @@ const handleSubmit = async (e) =>{
         <FormField 
             labelName="Personal Number*"
             placeholder="3766xxxx"
-            inputType="number"
+            inputType="text"
             value= {form.personalno}
             handleChange={(e) => handleFormFieldChange('personalno', e)}
           />

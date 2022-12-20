@@ -16,6 +16,7 @@ const port = process.env.PORT;
 
 // Require Model
 const Users = require('./models/userSchema');
+const Personal_Info = require('./models/personalInfoSchema');
 const { application } = require('express');
 
 // These Method is Used to Get Data and Cookies from FrontEnd
@@ -128,76 +129,91 @@ app.post('/Admin', async (req, res) => {
 const getAge = require('get-age');
 
 
-const nodemailer = require('nodemailer');
-const rand=Math.floor((Math.random() * 10000) + 54);
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'krypta370@gmail.com',
-      pass: '61602345'
-    }
-  });
+//const nodemailer = require('nodemailer');
+
+
+//const transporter = nodemailer.createTransport({
+    //service: 'gmail',
+    //auth: {
+      //user: 'krypta370@gmail.com',
+      //pass: '61602345'
+    //}
+  //});
 
 
 //User Registration as Voter
 app.post('/voterRegistration', async (req, res) => {
-
-    var account_address = req.body.account_address;
-    var data = req.body.personalno ;
-
-    
+    try{
 	const dob=[];
-    data = req.body.personalno; //data stores personal no
+    const data = req.body.personalno; //data stores personal no
 	console.log(data)
-    account_address = req.body.account_address; //stores metamask acc address
+    const account_address = req.body.account_address; //stores metamask acc address
+    console.log(account_address);
 
+    //const registerVoter = new RegisteredVoters({
+        //Personalno : data,
+        //Account_Address : account_address,
 
+    //});
+    const personalInfo = await Personal_Info.findOne({Personalno : data},(personalInfo));
 
-     
-     db.personal_info.find({Personalno: data},(error,results) => {
-		if (error){
-			return console.error(error);
-		}
-		console.log(docs)
-		dob = results[0].Dob;
-		const email= results[0].Email;
-		age = getAge(dob);
-		is_registered=results[0].Is_registered;
+        if(personalInfo){
+                console.log(personalInfo)
+                dob = personalInfo.Dob;
+                const email=personalInfo.Email;
+                age = getAge(dob);
+                is_registered=personalInfo.Is_registered;
+                if (is_registered!="YES"){
+                    if (age>=18)
+                    {
+                        const nodemailer = require('nodemailer');
+                        const rand=Math.floor((Math.random() * 10000) + 54);
+                        let mailTransporter = nodemailer.createTransport({
+                            service:"gmail",
+                            auth:{
+                                user:"krypta370@gmail.com",
+                                pass:"61602345"
+                            }
+                        })
 
-		if (is_registered!='YES')
-		{
-			if (age>=18)
+                        let details = {
+                            from: "krypta370@gmail.com",
+                            to: email,
+                            subject:"Please Confirm Your Email Account",
+                            text:"Hello, your otp is" +rand 
+                        }
+
+                        mailTransporter.sendMail(details,(err) =>{
+                            if(err){
+                                console.log("It has an error",err)
+                            }
+                            else{
+                                console.log("Email sent")
+                            }
+                        })
+                        //const register = await registerVoter.save();
+                        //console.log(register);
+                        res.render('otp');
+            }
+            else //IF USER IS LESS THAN 18
             {
-			const mailOptions = {
-				from:'krypta370@gmail.com',
-				to: email,
-				subject : "Please Confirm Your Email Account",
-				text : "Hello, your otp is" +rand
-		};
-		transporter.sendMail(mailOptions, function(error, info)
-		{
-			if (error) {
-				console.log(error);
-			}
-			else {
-				console.log('Email sent:' + info.response);
-			}
-		});
-		res.render('otp');
-		}
-		else //IF USER IS LESS THAN 18
-		{
-			res.send('You cannot vote as your age is less than 18');
-		}
+                results.send('You cannot vote as your age is less than 18');
+            }
         }
-	else // IF USER IS ALREADY REGISTERED
-	{
-		res.render('voterRegistration.jsx', {alertMsg:"You are already registered hence you cannot register again"});
-	}
-	
-});
+        else //IF USER IS ALREADY REGISTERED
+        {
+            res.render('voterRegistration.jsx', {alertMsg:"You are already registered hence you cannot register again"}); 
+        }
+        }
+
+
+    }catch(error){
+        res.status(400).send(error); 
+    } 
+        
+
+    });
     
-})
 
 //OTP VERIFY
 app.post('/otp', async (req, res) => {
