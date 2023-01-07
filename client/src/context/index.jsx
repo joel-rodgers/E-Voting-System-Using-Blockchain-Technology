@@ -19,7 +19,10 @@ export const StateContextProvider = ({ children }) => {
 
     //VOTE CONTRACT
 
-    //READ CANDIDATES CONTRACT
+    //READ CANDIDATES 
+    //const {data} = useContractRead(contract, "candidates")
+    
+
 
     //READ CANDIDATES COUNT CONTRACT
 
@@ -52,8 +55,9 @@ export const StateContextProvider = ({ children }) => {
     //CHANGE STATE FUNCTION CALL
 
     //VOTE FUNCTION CALL
-
+    
     //READ CANDIDATES FUNCTION CALL
+    
 
     //READ CANDIDATES COUNT FUNCTION CALL
 
@@ -70,6 +74,7 @@ export const StateContextProvider = ({ children }) => {
             contract,
             connect,
             addCandidate: publishCandidate,
+            
         }}
     >
         {children}
