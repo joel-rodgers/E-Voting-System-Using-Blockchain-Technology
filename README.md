@@ -1,2 +1,2 @@
 # E-Voting System Using Blockchain Technology
-![kp](public/kp.png)
+![kp](/client/public/kp.png)
